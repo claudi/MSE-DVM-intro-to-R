@@ -117,19 +117,50 @@ Exercise 4
 
 ```{r}
 rincome <- scan("data/rincome.txt", character(), sep="\n", skipNul = T)
+```
 
+(a) Convert the values `"Don't know"` `"No answer"` `"Not applicable"` `"Refused"` into `NA`
+
+```{r}
 toNA = c("Don't know", "No answer", "Not applicable", "Refused")
 rincome[rincome %in% toNA] <- NA
+```
 
+(b) Create a factor `rincome.f` with the values of `rincome` into a factor and display its levels
+
+```{r}
 rincome.f <- factor(rincome, ordered = FALSE)
 levels(rincome.f)
+```
 
+(c) Create a new vector `rincome.lv` with the levels of `rincome.f`
+
+```{r}
 rincome.lv <- levels(rincome.f)
+```
+
+(d) Reorder `rincome.lv` so that `"Lt $1000"` is the first
+
+```{r}
 rincome.lv <- levels(relevel(factor(rincome.lv), "Lt $1000"))
+```
+
+(e) Create an ordered factor `rincome.o` with `rincome.f` and the order of levels given by `rincome.lv`
+
+```{r}
 rincome.lv
 rincome.o <- ordered(factor(rincome, levels = rincome.lv))
-summary(rincome.o)
+```
 
+(f) With `summary(rincome.o)` see the result of the previous manipulation
+
+```{r}
+summary(rincome.o)
+```
+
+(g) Apply the function class to all the objects in this exercice to see the differences
+
+```{r}
 class(rincome)
 class(rincome.f)
 class(rincome.lv)
