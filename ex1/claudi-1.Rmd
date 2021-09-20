@@ -143,12 +143,12 @@ rincome.lv <- levels(rincome.f)
 
 ```{r}
 rincome.lv <- levels(relevel(factor(rincome.lv), "Lt $1000"))
+rincome.lv
 ```
 
 (e) Create an ordered factor `rincome.o` with `rincome.f` and the order of levels given by `rincome.lv`
 
 ```{r}
-rincome.lv
 rincome.o <- ordered(factor(rincome, levels = rincome.lv))
 ```
 
