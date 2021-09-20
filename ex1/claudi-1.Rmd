@@ -50,15 +50,54 @@ Exercise 2
 ```{r}
 set.seed(1462908)
 
-x <- sample(1:6, 100, replace=TRUE)
+x <- sample(1:6, 100, replace = TRUE)
+```
 
+(a) Count the number of 3’s in `x`
+
+```{r}
 sum(x == 3)
+```
+
+(b) What is the value of the 55th component of `x`?
+
+```{r}
 x[55]
-x[seq(11,19,2)]
+```
+
+(c) Display the components of `x` corresponding to odd positions from 11th to 19th
+
+```{r}
+x[seq(11, 19, by = 2)]
+```
+
+(d) Modify `x` so that 3’s are changed to 1
+
+```{r}
 x[x == 3] <- 1
+```
+
+(e) Create a vector `y` with the components of `x` that are greater than 2
+
+```{r}
 y <- x[x > 2]
+````
+
+(f) Calculate the mean of the square root of `x`
+
+```{r}
 mean(sqrt(x))
+```
+
+(g) Concatenate `x` and `y` in a new vector called `z`
+
+```{r}
 z <- c(x, y)
+```
+
+(h) Remove `z` from your workplace.
+
+```{r}
 rm(z)
 ```
 
