@@ -19,14 +19,28 @@ editor_options:
 Exercise 1
 ==========
 
+(a) Enter the data into R, as two vectors
+
 ```{r}
 year <- 2012:2021
 snow.cover <- c(47.5, 49.2, 46.0, 47.3, 48.8, 49.2, 46.9, 47.2, 46.4, 46.8)
+```
 
+(b) Take the logarithm of `snow.cover` and call it `log.snow.cover`
+
+```{r}
 log.snow.cover <- log(snow.cover)
+```
 
+(c) Plot `snow.cover` versus `year`
+
+```{r}
 plot(year, snow.cover, "l")
+```
 
+(d) Create a summary of the snow cover data
+
+```{r}
 summary(snow.cover)
 ```
 
