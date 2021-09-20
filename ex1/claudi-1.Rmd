@@ -28,7 +28,7 @@ set.seed(1462908)
 
 x <- sample(1:6, 100, replace=TRUE)
 
-length(x[x == 3])
+sum(x == 3)
 x[55]
 x[seq(11,19,2)]
 x[x == 3] <- 1
