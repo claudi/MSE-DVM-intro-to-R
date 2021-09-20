@@ -12,7 +12,7 @@ editor_options:
 ```
 
 ```{r}
-#setwd("~/UAB/MSE/DataVisualitzation/Exercises/intro-to-R/ex1/")
+#setwd("~/UAB/MSE/DataVisualisation/Exercises/intro-to-R/ex1/")
 #ls()
 ```
 
