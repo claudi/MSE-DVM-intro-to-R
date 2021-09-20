@@ -10,8 +10,8 @@ editor_options:
 # Claudi Lleyda Moltó
 # NIU: 1462908
 # ----------
-setwd("~/UAB/MSE/DataVisualitzation/Exercises/ex1/")
-ls()
+#setwd("~/UAB/MSE/DataVisualitzation/Exercises/intro-to-R/ex1/")
+#ls()
 
 # ----------
 year <- 2012:2021
