@@ -1,17 +1,17 @@
 ---
 title: "Exercise set 1"
 author: "Claudi Lleyda Moltó"
-date: "NIU: 1462908"
 output:
   pdf_document: default
-  html_notebook: default
 editor_options:
   chunk_output_type: console
 ---
 ```{r}
 # Claudi Lleyda Moltó
 # NIU: 1462908
+```
 
+```{r}
 #setwd("~/UAB/MSE/DataVisualitzation/Exercises/intro-to-R/ex1/")
 #ls()
 ```
