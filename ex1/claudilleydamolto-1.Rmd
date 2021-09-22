@@ -1,0 +1,168 @@
+---
+title: "Exercise set 1"
+author: "Claudi Lleyda Moltó"
+output:
+  pdf_document: default
+editor_options:
+  chunk_output_type: console
+---
+```{r}
+# Claudi Lleyda Moltó
+# NIU: 1462908
+```
+
+```{r}
+#setwd("~/UAB/MSE/DataVisualisation/Exercises/intro-to-R/ex1/")
+#ls()
+```
+
+Exercise 1
+==========
+
+(a) Enter the data into R, as two vectors
+
+```{r}
+year <- 2012:2021
+snow.cover <- c(47.5, 49.2, 46.0, 47.3, 48.8, 49.2, 46.9, 47.2, 46.4, 46.8)
+```
+
+(b) Take the logarithm of `snow.cover` and call it `log.snow.cover`
+
+```{r}
+log.snow.cover <- log(snow.cover)
+```
+
+(c) Plot `snow.cover` versus `year`
+
+```{r}
+plot(year, snow.cover, "l")
+```
+
+(d) Create a summary of the snow cover data
+
+```{r}
+summary(snow.cover)
+```
+
+Exercise 2
+==========
+
+```{r}
+set.seed(1462908)
+
+x <- sample(1:6, 100, replace = TRUE)
+```
+
+(a) Count the number of 3’s in `x`
+
+```{r}
+sum(x == 3)
+```
+
+(b) What is the value of the 55th component of `x`?
+
+```{r}
+x[55]
+```
+
+(c) Display the components of `x` corresponding to odd positions from 11th to 19th
+
+```{r}
+x[seq(11, 19, by = 2)]
+```
+
+(d) Modify `x` so that 3’s are changed to 1
+
+```{r}
+x[x == 3] <- 1
+```
+
+(e) Create a vector `y` with the components of `x` that are greater than 2
+
+```{r}
+y <- x[x > 2]
+````
+
+(f) Calculate the mean of the square root of `x`
+
+```{r}
+mean(sqrt(x))
+```
+
+(g) Concatenate `x` and `y` in a new vector called `z`
+
+```{r}
+z <- c(x, y)
+```
+
+(h) Remove `z` from your workplace.
+
+```{r}
+rm(z)
+```
+
+Exercise 3
+==========
+
+```{r}
+subletters <- letters[1:5]
+subnums <- 1:3
+
+paste(rep(subletters, each = 3), subnums, sep = "")
+paste(subletters, rep(subnums, each = 5), sep = "")
+```
+
+Exercise 4
+==========
+
+```{r}
+rincome <- scan("data/rincome.txt", character(), sep="\n", skipNul = T)
+```
+
+(a) Convert the values `"Don't know"` `"No answer"` `"Not applicable"` `"Refused"` into `NA`
+
+```{r}
+toNA = c("Don't know", "No answer", "Not applicable", "Refused")
+rincome[rincome %in% toNA] <- NA
+```
+
+(b) Create a factor `rincome.f` with the values of `rincome` into a factor and display its levels
+
+```{r}
+rincome.f <- factor(rincome, ordered = FALSE)
+levels(rincome.f)
+```
+
+(c) Create a new vector `rincome.lv` with the levels of `rincome.f`
+
+```{r}
+rincome.lv <- levels(rincome.f)
+```
+
+(d) Reorder `rincome.lv` so that `"Lt $1000"` is the first
+
+```{r}
+rincome.lv <- levels(relevel(factor(rincome.lv), "Lt $1000"))
+rincome.lv
+```
+
+(e) Create an ordered factor `rincome.o` with `rincome.f` and the order of levels given by `rincome.lv`
+
+```{r}
+rincome.o <- ordered(factor(rincome, levels = rincome.lv))
+```
+
+(f) With `summary(rincome.o)` see the result of the previous manipulation
+
+```{r}
+summary(rincome.o)
+```
+
+(g) Apply the function class to all the objects in this exercice to see the differences
+
+```{r}
+class(rincome)
+class(rincome.f)
+class(rincome.lv)
+class(rincome.o)
+```

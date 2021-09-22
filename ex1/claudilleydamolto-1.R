@@ -47,7 +47,7 @@ levels(rincome.f)
 rincome.lv <- levels(rincome.f)
 rincome.lv <- levels(relevel(factor(rincome.lv), "Lt $1000"))
 rincome.lv
-rincome.o <- ordered(factor(rincome, levels = levels(rincome.lv)))
+rincome.o <- ordered(factor(rincome, levels = rincome.lv))
 summary(rincome.o)
 
 class(rincome)
