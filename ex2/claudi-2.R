@@ -5,16 +5,16 @@ setwd("~/UAB/MSE/DataVisualitzation/Exercises/ex2")
 ls()
 
 # ----------
-A = matrix(seq(1, 17, 2), nrow = 3)
-B = matrix(seq(21, 121, 20), nrow = 3, byrow = TRUE)
+A <- matrix(seq(1, 17, 2), nrow = 3)
+B <- matrix(seq(21, 121, 20), nrow = 3, byrow = TRUE)
 
-C = cbind(A, B)
-H = rbind(A, cbind(B, 0:0))
+C <- cbind(A, B)
+H <- rbind(A, cbind(B, 0:0))
 
 C
 H
 
-G = rbind(A, t(B))
+G <- rbind(A, t(B))
 
 G
 
