@@ -1,8 +1,8 @@
 # Claudi Lleyda Moltó
 # NIU: 1462908
 # ----------
-setwd("~/UAB/MSE/DataVisualitzation/Exercises/ex2")
-ls()
+#setwd("~/UAB/MSE/DataVisualitzation/Exercises/ex2")
+#ls()
 
 # ----------
 A <- matrix(seq(1, 17, 2), nrow = 3)
