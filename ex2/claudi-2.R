@@ -45,6 +45,22 @@ list.1 <- list(w = matrix(0:3, nrow = 1),
                treatment = anorexia)
 
 sublist <- list.1[2:3]
-sublist$B
+#sublist$B
+sublist[[1]]
 solve(sublist$B)
 
+list.1$treatment$Treat
+
+Name <- c("First", "Second", "Third", "Fourth", "Fith")
+Prob <- c(23, 41, 32, 58, 26)
+
+sample.df <- data.frame(Name, Prob)
+
+list.1[[length(list.1)]] <- sample.df
+
+list.2 <- list(nums = c(123, 423),
+               chars = "Test list")
+
+append(list.1, list.2)
+
+# ----------
