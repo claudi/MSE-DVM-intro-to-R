@@ -1,7 +1,7 @@
 # Claudi Lleyda Moltó
 # NIU: 1462908
 # ----------
-setwd("~/UAB/MSE/DataVisualitzation/Exercises/ex2")
+setwd("~/UAB/MSE/Data-visualitzation/Exercises/Intro-to-R/ex2/")
 ls()
 
 # ----------
