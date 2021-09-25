@@ -65,3 +65,11 @@ list.2 <- list(nums = c(123, 423),
 append(list.1, list.2)
 
 # ----------
+happiness <- read.table("data/example2.txt", header = TRUE)
+
+happiness[10:18, 1:2]
+
+selection <- c(23, 2, 5)
+happiness[selection, 2]
+
+sapply(happiness, function(x) c(summary(x), sd = sd(x)))
