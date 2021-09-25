@@ -73,3 +73,23 @@ selection <- c(23, 2, 5)
 happiness[selection, 2]
 
 sapply(happiness, function(x) c(summary(x), sd = sd(x)))
+
+# ----------
+club.points <- data.frame(Firstname = c("Alice", "Paul", "Jerry", "Thomas", "Marguerite", "Linda"),
+                          Lastname = c("Ryan", "Collins", "Burke", "Dolan", "Black", "McGrath"),
+                          Age = c(37, 34, 26, 72, 18, 24),
+                          Gender = factor(c("F", "M", "M", "M", "F", "F")),
+                          Points = c(278, 242, 312, 740, 177, 195))
+pts <- club.points$Points
+mean(pts)
+
+fpoints <- club.points[club.points$Gender=="F",]
+fpoints
+
+club.points[club.points$Firstname == "Jerry"
+            & club.points$Lastname == "Burke",]$Age <- 28
+club.points
+
+max(club.points[club.points$Gender=="M","Age"])
+
+club.points[club.points$Points > 100 & club.points$Age > 30,]
