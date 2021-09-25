@@ -126,3 +126,31 @@ italy.august <- subset(europe, countriesAndTerritories == "Italy" & month == "8"
 
 mean(spain.august$cases)
 mean(italy.august$cases)
+
+# ----------
+library(readxl)
+
+header <- c("ID", "Genre", "Weight", "Height", "Birth", "Age", "Age.group")
+NAs <- c("?", "NA")
+
+data <- read.csv("data.csv", header = TRUE, sep=",")
+data
+
+data.1 <- read.csv("data1.csv", header = TRUE, sep=",")
+names(data.1) <- header
+data.1
+
+data.2 <- read.csv("data2.csv", header = TRUE, sep=",", na.string = NAs) 
+names(data.2) <- header
+data.2
+
+data.3 <- read_excel("data3.xls", header = TRUE, na.string = NAs)
+names(data.3) <- header
+data.3
+
+data.4 <- read.csv2("data4.csv", header = TRUE, na.string = NAs)
+data.4 
+
+data.5 <- read.csv2("data5.csv", header = TRUE, sep="", na.string = NAs)
+data.5 
+
