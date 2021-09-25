@@ -28,21 +28,18 @@ B <- matrix(seq(21, 121, 20), nrow = 3, byrow = TRUE)
 
 ```{r}
 C <- cbind(A, B)
-C
 ```
 
 (b) Combine `A` and `B` into a new matrix `H` using `rbind()`.
 
 ```{r}
 H <- rbind(A, cbind(B, 0:0))
-H
 ```
 
 (c) Combine `A` with `B^t` (the transpose of `B`) by rows into the new matrix `G`.
 
 ```{r}
 G <- rbind(A, t(B))
-G
 ```
 
 (d) Determine the dimensions of `C` using `dim()` function.
