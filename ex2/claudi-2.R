@@ -93,3 +93,36 @@ club.points
 max(club.points[club.points$Gender=="M","Age"])
 
 club.points[club.points$Points > 100 & club.points$Age > 30,]
+
+# ----------
+data<-read.csv("https://opendata.ecdc.europa.eu/covid19/casedistribution/csv",
+               sep = ",", na.strings = " ")
+
+europe<-subset(data, continentExp=="Europe")
+europe<-europe[!(names(data) %in% c("dateRep", "geoId",
+                                    "countryterritoryCode",
+                                    "continentExp"))]
+
+names(europe)[names(europe) == "Cumulative_number_for_14_days_of_COVID.19_cases_per_100000"] <- "CumFor14DaysPer100th"
+
+
+summary(subset(europe, countriesAndTerritories == "France",
+               select = popData2019))
+
+
+sum(subset(europe,countriesAndTerritories=="Spain")$deaths)
+
+europe.countries<-split(europe, europe$countriesAndTerritories)
+
+
+spain.april <- subset(europe, countriesAndTerritories == "Spain" & month == "4")
+italy.april <- subset(europe, countriesAndTerritories == "Italy" & month == "4")
+
+mean(spain.april$cases)
+mean(italy.april$cases)
+
+spain.august <- subset(europe, countriesAndTerritories == "Spain" & month == "8")
+italy.august <- subset(europe, countriesAndTerritories == "Italy" & month == "8")
+
+mean(spain.august$cases)
+mean(italy.august$cases)
