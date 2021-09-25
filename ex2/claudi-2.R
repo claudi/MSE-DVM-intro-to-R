@@ -39,6 +39,7 @@ arr[2,,2]
 
 # ----------
 library(MASS)
+require(MASS)
 
 list.1 <- list(w = matrix(0:3, nrow = 1),
                B = matrix(rnorm(9), nrow = 3),
