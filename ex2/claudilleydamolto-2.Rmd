@@ -115,21 +115,42 @@ require(MASS)
 list.1 <- list(w = matrix(0:3, nrow = 1),
                B = matrix(rnorm(9), nrow = 3),
                treatment = anorexia)
+```
 
+(a) Make a sublist of the second and third elements (using square brackets)
+
+```{r}
 sublist <- list.1[2:3]
-#sublist$B
+```
+
+(b) Print out the matrix of the list (using indexing). Calculate its inverse.
+
+```{r}
 sublist[[1]]
 solve(sublist$B)
+```
 
+(c) Use dollar notation (twice!) to print out the variable Treat of the data frame contained in the list
+`list.1`.
+
+```{r}
 list.1$treatment$Treat
+```
 
+(d) Add a new data frame to the list `list.1`.
+
+```{r}
 Name <- c("First", "Second", "Third", "Fourth", "Fith")
 Prob <- c(23, 41, 32, 58, 26)
 
 sample.df <- data.frame(Name, Prob)
 
 list.1[[length(list.1)]] <- sample.df
+```
 
+(e) Make a new list of two elements and join the two lists.
+
+```{r}
 list.2 <- list(nums = c(123, 423),
                chars = "Test list")
 
@@ -139,14 +160,28 @@ append(list.1, list.2)
 Exercise 3
 ==========
 
+(a) Read this data into `R`.
+
 ```{r}
 happiness <- read.table("data/example2.txt", header = TRUE)
+```
 
+(b) Print out the data for cases `10` to `18`.
+
+```{r}
 happiness[10:18, 1:2]
+```
 
+(c) Print out the data for column `2`, cases `23`, `2`, and `5` (in that order).
+
+```{r}
 selection <- c(23, 2, 5)
 happiness[selection, 2]
+```
 
+(d) Find the mean, standard deviation, minimum and maximum for each variable using the smallest number of commands possible.
+
+```{r}
 sapply(happiness, function(x) c(summary(x), sd = sd(x)))
 ```
 
