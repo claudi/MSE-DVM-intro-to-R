@@ -77,13 +77,13 @@ arr <- array(1:32, c(4, 4, 2))
 ```
 
 
-(i) Print out the value in row `2`, column `4` of the first ‘matrix’ (i.e. the element of index `2,4,1`).
+(i) Print out the value in row `2`, column `4` of the first matrix (i.e. the element of index `2,4,1`).
 
 ```{r}
 arr[2, 4, 1]
 ```
 
-(j) Print out the value in the row `1`, column `3` of the second ’matrix’.
+(j) Print out the value in the row `1`, column `3` of the second matrix.
 
 ```{r}
 arr[1, 3, 2]
@@ -148,8 +148,7 @@ list.1[[length(list.1)]] <- sample.df
 (e) Make a new list of two elements and join the two lists.
 
 ```{r}
-list.2 <- list(nums = c(123, 423),
-               chars = "Test list")
+list.2 <- list(nums = c(123, 423), chars = "Test list")
 
 append(list.1, list.2)
 ```
@@ -204,20 +203,19 @@ mean(pts)
 (b) Store the data for the females only into a data frame called `fpoints`.
 
 ```{r}
-fpoints <- club.points[club.points$Gender=="F",]
+fpoints <- club.points[club.points$Gender == "F",]
 ```
 
 (c) The age for `Jerry Burke` was entered incorrectly. Change his age to `28`.
 
 ```{r}
-club.points[club.points$Firstname == "Jerry"
-            & club.points$Lastname == "Burke",]$Age <- 28
+club.points[club.points$Firstname == "Jerry" & club.points$Lastname == "Burke",]$Age <- 28
 ```
 
 (d) Determine the maximum age of the males.
 
 ```{r}
-max(club.points[club.points$Gender=="M","Age"])
+max(club.points[club.points$Gender == "M","Age"])
 ```
 
 (e) Extract the data for people with more than `100` points and are over the age of `30`.
@@ -236,9 +234,8 @@ data<-read.csv("https://opendata.ecdc.europa.eu/covid19/casedistribution/csv",
 (a) Make a subdataframe of `data` called `europe` of the data that correspond to Europe and all the variables except `dateRep`, `geoId`, `countryterritoryCode`, `continentExp`.
 
 ```{r}
-europe<-subset(data, continentExp=="Europe")
-europe<-europe[!(names(data) %in% c("dateRep", "geoId",
-                                    "countryterritoryCode",
+europe<-subset(data, continentExp == "Europe")
+europe<-europe[!(names(data) %in% c("dateRep", "geoId", "countryterritoryCode",
                                     "continentExp"))]
 ```
 
@@ -246,20 +243,21 @@ europe<-europe[!(names(data) %in% c("dateRep", "geoId",
 into `CumFor14DaysPer100th`.
 
 ```{r}
-names(europe)[names(europe) == "Cumulative_number_for_14_days_of_COVID.19_cases_per_100000"] <- "CumFor14DaysPer100th"
+names(europe)[names(europe) ==
+                "Cumulative_number_for_14_days_of_COVID.19_cases_per_100000"] <-
+  "CumFor14DaysPer100th"
 ```
 
 (c) What is the population of France?
 
 ```{r}
-summary(subset(europe, countriesAndTerritories == "France",
-               select = popData2019))
+summary(subset(europe, countriesAndTerritories == "France", select = popData2019))
 ```
 
 (d) What is the total number of deaths in Spain?
 
 ```{r}
-sum(subset(europe,countriesAndTerritories=="Spain")$deaths)
+sum(subset(europe,countriesAndTerritories == "Spain")$deaths)
 ```
 
 (e) Use the command `split` to get a list of data frames by countries in Europe.
@@ -291,18 +289,22 @@ Exercise 6
 ```{r}
 library(readxl)
 require(readxl)
+```
 
+```{r}
 header <- c("ID", "Genre", "Weight", "Height", "Birth", "Age", "Age.group")
 NAs <- c("?", "NA")
+```
 
-data <- read.csv("data/data.csv", header = TRUE, sep=",")
+```{r}
+data <- read.csv("data/data.csv", header = TRUE, sep = ",")
 data
 
-data.1 <- read.csv("data/data1.csv", header = TRUE, sep=",")
+data.1 <- read.csv("data/data1.csv", header = TRUE, sep = ",")
 names(data.1) <- header
 data.1
 
-data.2 <- read.csv("data/data2.csv", header = TRUE, sep=",", na.string = NAs)
+data.2 <- read.csv("data/data2.csv", header = TRUE, sep = ",", na.string = NAs)
 names(data.2) <- header
 data.2
 
@@ -312,6 +314,6 @@ data.3
 data.4 <- read.csv2("data/data4.csv", header = TRUE, na.string = NAs)
 data.4
 
-data.5 <- read.csv2("data/data5.csv", header = TRUE, sep="", na.string = NAs)
+data.5 <- read.csv2("data/data5.csv", header = TRUE, sep = "", na.string = NAs)
 data.5
 ```
