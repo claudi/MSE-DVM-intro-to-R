@@ -140,7 +140,7 @@ data.1 <- read.csv("data/data1.csv", header = TRUE, sep=",")
 names(data.1) <- header
 data.1
 
-data.2 <- read.csv("data/data2.csv", header = TRUE, sep=",", na.string = NAs) 
+data.2 <- read.csv("data/data2.csv", header = TRUE, sep=",", na.string = NAs)
 names(data.2) <- header
 data.2
 
@@ -148,8 +148,8 @@ data.3 <- as.data.frame(read_excel("data/data3.xls", na = NAs))
 data.3
 
 data.4 <- read.csv2("data/data4.csv", header = TRUE, na.string = NAs)
-data.4 
+data.4
 
 data.5 <- read.csv2("data/data5.csv", header = TRUE, sep="", na.string = NAs)
-data.5 
+data.5
 
