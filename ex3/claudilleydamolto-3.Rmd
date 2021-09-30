@@ -12,7 +12,7 @@ output:
 
 # ----------
 # https://developer.tmb.cat/data/parades
-parades <- read.csv("parades.csv", header = TRUE, sep = ",", quote = "\"")
+parades <- read.csv("data/parades.csv", header = TRUE, sep = ",", quote = "\"")
 
 parades$NOM_TIPUS_PARADA <- as.factor(parades$NOM_TIPUS_PARADA)
 parades$TIPIFICACIO_PARADA <- as.factor(parades$TIPIFICACIO_PARADA)
@@ -28,7 +28,7 @@ legend("topleft", legend = levels(parades$TIPIFICACIO_PARADA), col = 1, pch = 1:
 par(mar = c(5, 4, 4, 2))
 
 library(lattice)
-xyplot(parades$LAT~parades$LON|parades$ID_DISTRICTE+parades$TIPIFICACIO_PARADA)
+xyplot(parades$LAT ~ parades$LON | parades$ID_DISTRICTE + parades$TIPIFICACIO_PARADA)
 ```
 
 ```{r}
@@ -59,7 +59,7 @@ par(mfrow = c(1, 2))
 hist(dummy$y, xlab = "y", ylab = "Frequency", main = "Histogram of y")
 boxplot(dummy$y, xlab="y", main = "Boxplot of y")
 dev.off()
-par(mfrow = c (1 ,1))
+par(mfrow = c (1, 1))
 ```
 ![Plot saved to claudilleydamolto-3-3-d.jpeg:](claudilleydamolto-3-3-d.jpeg)
 ```{r}
@@ -83,14 +83,12 @@ lines(density(airquality$Wind), col = "blue")
 ```
 
 ```{r}
-locate.f <- function(int, vector)
-{
-  return(int %in% vector)
+locate.f <- function(int, vec) {
+    return(int %in% vec)
 }
 
-unique.f <- function(vector)
-{
-  return(unique(vector))
+unique.f <- function(vec) {
+    return(unique(vec))
 }
 ```
 
