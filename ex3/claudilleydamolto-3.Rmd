@@ -72,3 +72,12 @@ resids <- resid(fm)
 qqnorm(resids)
 qqline(resids)
 ```
+
+```{r}
+coplot(airquality$Ozone ~ airquality$Solar.R | airquality$Temp * airquality$Wind, number = c(3, 3), overlap = 0)
+```
+
+```{r}
+hist(airquality$Wind, prob = TRUE)
+lines(density(airquality$Wind), col = "blue")
+```
