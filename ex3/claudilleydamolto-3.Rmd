@@ -81,3 +81,15 @@ coplot(airquality$Ozone ~ airquality$Solar.R | airquality$Temp * airquality$Wind
 hist(airquality$Wind, prob = TRUE)
 lines(density(airquality$Wind), col = "blue")
 ```
+
+```{r}
+locate.f <- function(int, vector)
+{
+  return(int %in% vector)
+}
+
+unique.f <- function(vector)
+{
+  return(unique(vector))
+}
+```
