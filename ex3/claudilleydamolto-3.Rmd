@@ -65,8 +65,8 @@ par(mfrow = c (1 ,1))
 ```{r}
 plot(dummy$x ~ dummy$y, main = "Plot of x vs y", xlab = "x", ylab = "y")
 
-fm <- lm(y~y, data = dummy)
-abline(coef(fm), col="blue")
+fm <- lm(x ~ y, data = dummy)
+abline(coef(fm), col = "blue")
 
 resids <- resid(fm)
 qqnorm(resids)
