@@ -1,0 +1,29 @@
+---
+output:
+  pdf_document: default
+  html_document: default
+---
+```{r}
+# Claudi Lleyda Moltó
+# 1462908
+# ----------
+#setwd("~/UAB/MSE/Data-visualization/Exercises/intro-to-R/ex3")
+#ls()
+
+# ----------
+# https://developer.tmb.cat/data/parades
+parades <- read.csv("parades.csv", header = TRUE, sep = ",", quote = "\"")
+
+parades$NOM_TIPUS_PARADA <- as.factor(parades$NOM_TIPUS_PARADA)
+parades$TIPIFICACIO_PARADA <- as.factor(parades$TIPIFICACIO_PARADA)
+parades$ID_POBLACIO <- as.factor(parades$ID_POBLACIO)
+parades$ID_DISTRICTE <- as.factor(parades$ID_DISTRICTE)
+
+pairs(parades[,c("ID_PARADA", "CODI_PARADA", "CODI_INTERC", "LON", "LAT")])
+
+par(xpd = T, mar = par()$mar + c(0,0,0,6))
+plot(parades$LAT, parades$LON, col = parades$ID_DISTRICTE, pch = as.numeric(parades$TIPIFICACIO_PARADA))
+legend("right", inset = c(-0.45, 0), legend = levels(as.factor(parades$NOM_DISTRICTE))[2:11], col = as.numeric(parades$ID_DISTRICTE), pch = 15)
+legend("topleft", legend = levels(parades$TIPIFICACIO_PARADA), col = 1, pch = 1:length(levels(parades$TIPIFICACIO_PARADA)))
+par(mar = c(5, 4, 4, 2))
+```
