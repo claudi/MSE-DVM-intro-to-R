@@ -93,3 +93,32 @@ unique.f <- function(vector)
   return(unique(vector))
 }
 ```
+
+```{r}
+toNA <- function(v1, v.na) {
+    for(value in v.na) {
+        v1[v1 == value] <- NA
+    }
+    return(v1)
+}
+
+rincome <- scan("data/rincome.txt" , character(), sep = "\n", skipNul = TRUE)
+rincome <- toNA(rincome, c("Don't know", "No answer", "Not applicable", "Refused"))
+
+big.values <- function(vec, tresh) {
+    vec[vec > tresh] <- NA
+    return(vec)
+}
+
+big.values <- function(vec, tresh, greater = TRUE) {
+    if(greater) {
+        vec[vec > tresh] <- NA
+        return(vec)
+    } else {
+        vec[vec < tresh] <- NA
+        return(vec)
+    }
+}
+
+airquality$Solar.R <- big.values(airquality$Solar.R, 320)
+```
