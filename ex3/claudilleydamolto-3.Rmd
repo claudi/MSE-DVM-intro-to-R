@@ -21,6 +21,16 @@ parades$ID_DISTRICTE <- as.factor(parades$ID_DISTRICTE)
 
 pairs(parades[,c("ID_PARADA", "CODI_PARADA", "CODI_INTERC", "LON", "LAT")])
 
+cor(parades$ID_PARADA, parades$CODI_PARADA)
+```
+Using the following code we can see the correlation values and check that none of the variables are correlated.
+```{r}
+for(i in c("ID_PARADA", "CODI_PARADA", "CODI_INTERC", "LON", "LAT")) {
+  for(j in c("ID_PARADA", "CODI_PARADA", "CODI_INTERC", "LON", "LAT")) {
+    cor(parades[i], parades[j])
+  }
+}
+
 par(xpd = T, mar = par()$mar + c(0,0,0,6))
 plot(parades$LAT, parades$LON, col = parades$ID_DISTRICTE, pch = as.numeric(parades$TIPIFICACIO_PARADA))
 legend("right", inset = c(-0.45, 0), legend = levels(as.factor(parades$NOM_DISTRICTE))[2:11], col = as.numeric(parades$ID_DISTRICTE), pch = 15)
