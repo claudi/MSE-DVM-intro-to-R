@@ -30,3 +30,19 @@ par(mar = c(5, 4, 4, 2))
 library(lattice)
 xyplot(parades$LAT~parades$LON|parades$ID_DISTRICTE+parades$TIPIFICACIO_PARADA)
 ```
+
+```{r}
+sample(seq(0, 2, length.out = 201), 100, replace = FALSE)
+dt(seq(-1, 1, length.out = 21), df = 13)
+qt(0.01, df = 9)
+
+qnorm(0.8, mean = 100, sd = 15)
+qnorm(0.9, mean = 100, sd = 15)
+1 - pnorm(142, mean = 100, sd = 15)
+
+set.seed(0)
+rnorm(20, mean = 100, sd = 15)
+
+set.seed(1462908)
+rnorm(20, mean = 100, sd = 15)
+```
