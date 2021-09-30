@@ -13,3 +13,9 @@ parades$ID_POBLACIO <- as.factor(parades$ID_POBLACIO)
 parades$ID_DISTRICTE <- as.factor(parades$ID_DISTRICTE)
 
 pairs(parades[,c("ID_PARADA", "CODI_PARADA", "CODI_INTERC", "LON", "LAT")])
+
+par(xpd = T, mar = par()$mar + c(0,0,0,7))
+plot(parades$LAT, parades$LON, col = parades$ID_DISTRICTE, pch = as.numeric(parades$TIPIFICACIO_PARADA))
+legend("right", inset = c(-0.5, 0), legend = levels(as.factor(parades$NOM_DISTRICTE))[2:11], col = as.numeric(parades$ID_DISTRICTE), pch = 15)
+legend("topleft", legend = levels(parades$TIPIFICACIO_PARADA), col = 1, pch = 1:length(levels(parades$TIPIFICACIO_PARADA)))
+par(mar = c(5, 4, 4, 2) + 0.1)
