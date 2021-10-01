@@ -1,24 +1,35 @@
 ---
+title: "Exercise set 3"
+author: "Claudi Lleyda Moltó"
 output:
   pdf_document: default
-  html_document: default
+editor_options:
+  chunk_output_type: console
 ---
 ```{r}
 # Claudi Lleyda Moltó
 # 1462908
-# ----------
+```
+
+```{r}
 #setwd("~/UAB/MSE/Data-visualization/1-intro-to-R/ex3")
 #ls()
+```
 
-# ----------
-# https://developer.tmb.cat/data/parades
+# Exercise 1
+
+```{r}
 parades <- read.csv("data/parades.csv", header = TRUE, sep = ",", quote = "\"")
 
 parades$NOM_TIPUS_PARADA <- as.factor(parades$NOM_TIPUS_PARADA)
 parades$TIPIFICACIO_PARADA <- as.factor(parades$TIPIFICACIO_PARADA)
 parades$ID_POBLACIO <- as.factor(parades$ID_POBLACIO)
 parades$ID_DISTRICTE <- as.factor(parades$ID_DISTRICTE)
+```
 
+(a) Use `pairs` to compare the numeric variables.
+
+```{r}
 pairs(parades[,c("ID_PARADA", "CODI_PARADA", "CODI_INTERC", "LON", "LAT")])
 
 cor(parades$ID_PARADA, parades$CODI_PARADA)
@@ -30,77 +41,172 @@ for(i in c("ID_PARADA", "CODI_PARADA", "CODI_INTERC", "LON", "LAT")) {
     cor(parades[i], parades[j])
   }
 }
+```
 
+(b) Represent two numeric variables and two factors in the same graph.
+
+```{r}
 par(xpd = TRUE, mar = par()$mar + c(0,0,0,6))
-plot(parades$LAT, parades$LON, col = parades$ID_DISTRICTE, pch = as.numeric(parades$TIPIFICACIO_PARADA))
-legend("right", inset = c(-0.45, 0), legend = levels(as.factor(parades$NOM_DISTRICTE))[2:11], col = as.numeric(parades$ID_DISTRICTE), pch = 15)
-legend("topleft", legend = levels(parades$TIPIFICACIO_PARADA), col = 1, pch = 1:length(levels(parades$TIPIFICACIO_PARADA)))
+plot(parades$LAT, parades$LON,
+     col = parades$ID_DISTRICTE,
+     pch = as.numeric(parades$TIPIFICACIO_PARADA),
+     xlab = "longitude", ylab = "latitude")
+legend("right", inset = c(-0.45, 0),
+       legend = levels(as.factor(parades$NOM_DISTRICTE))[2:11],
+       col = as.numeric(parades$ID_DISTRICTE), pch = 15)
+legend("topleft",
+       legend = levels(parades$TIPIFICACIO_PARADA),col = 1,
+       pch = 1:length(levels(parades$TIPIFICACIO_PARADA)))
 par(mar = c(5, 4, 4, 2))
+```
 
+(c) Use the `xyplot` in the `lattice` package instead to do the representation of the same variables.
+
+```{r}
 library(lattice)
 xyplot(parades$LAT ~ parades$LON | parades$ID_DISTRICTE + parades$TIPIFICACIO_PARADA)
 ```
 
+# Exercise 2
+
+(a) Draw a random sample of size $100$ from the interval $[0, 2]$, which contains $201$ values. Sample without replacement.
+
 ```{r}
 sample(seq(0, 2, length.out = 201), 100, replace = FALSE)
+```
+
+(b) Use `dt` to evaluate the density function of the $t$ distribution with $13$ degrees of freedom at $21$ values in the range $-1$ to $1$.
+
+```{r}
 dt(seq(-1, 1, length.out = 21), df = 13)
+```
+
+(c) Find $x$ such that $P[X \leq x] = 0.01$ for a $t$ distribution with $9$ degrees of freedom.
+
+```{r}
 qt(0.01, df = 9)
+```
 
+(d) IQ scores are known to have a normal distribution with mean $100$ and standard deviation $15$. What IQ would you have if you were in the $80th$ percentile?
+
+```{r}
 qnorm(0.8, mean = 100, sd = 15)
-qnorm(0.9, mean = 100, sd = 15)
-1 - pnorm(142, mean = 100, sd = 15)
+```
 
+(e) What IQ would you have if you were in the top $10$ percent?
+
+```{r}
+qnorm(0.9, mean = 100, sd = 15)
+```
+
+(f) What is the probability of having an IQ above $142$?
+
+```{r}
+1 - pnorm(142, mean = 100, sd = 15)
+```
+
+(g) Set the seed to `0` and create two samples of size $20$ from the standard normal distribution with the same values. Repeat the process but set the seed to your ID number.
+
+```{r}
 set.seed(0)
-rnorm(20, mean = 100, sd = 15)
+rnorm(20, mean = 0, sd = 1)
+rnorm(20, mean = 0, sd = 1)
 
 set.seed(1462908)
-rnorm(20, mean = 100, sd = 15)
+rnorm(20, mean = 0, sd = 1)
+rnorm(20, mean = 0, sd = 1)
 ```
+# Exercise 3
+
+(a) Create a vector `x` of the values from $1$ to $20$.
 
 ```{r}
 x <- 1:20
-w <- 1 + (sqrt(x) / 2)
+```
 
+(b) Create a vector `w <- 1 + sqrt(x)/2`
+
+```{r}
+w <- 1 + (sqrt(x) / 2)
+```
+
+(c) Create a data frame called `dummy`, with columns `x = x` and `y = x + rnorm(x)*w`. To ensure we all get the same values, set the seed to $0$.
+
+```{r}
 set.seed(0)
 dummy <- data.frame(x = x, y = x + (rnorm(x) * w))
+```
 
+(d) Create a histogram and a boxplot of `y` and plot them side-by-side on the same graphing region. Label the axes accordingly. Save your results as a `jpeg` file.
+
+```{r, results = "hide"}
 jpeg("claudilleydamolto-3-3-d.jpeg")
 par(mfrow = c(1, 2))
 hist(dummy$y, xlab = "y", ylab = "Frequency", main = "Histogram of y")
-boxplot(dummy$y, xlab="y", main = "Boxplot of y")
+boxplot(dummy$y, xlab = "y", main = "Boxplot of y")
 dev.off()
 par(mfrow = c (1, 1))
 ```
 ![Plot saved to claudilleydamolto-3-3-d.jpeg:](claudilleydamolto-3-3-d.jpeg)
+(e) Plot `y` versus `x` using an appropriate plotting command. Put a title on the graph and labels on the axes.
+
 ```{r}
 plot(dummy$x ~ dummy$y, main = "Plot of x vs y", xlab = "x", ylab = "y")
+```
 
+(f) Enter the command `fm <- lm(y~x, data=dummy)` to fit a linear regression model. Add the estimated regression line to the current plot and make it the colour blue.
+
+```{r}
+plot(dummy$x ~ dummy$y, main = "Plot of x vs y", xlab = "x", ylab = "y")
 fm <- lm(x ~ y, data = dummy)
-abline(coef(fm), col = "blue")
+abline(coef = coef(fm), col = "blue")
+```
 
+(g) Extract the values of the residuals using `resids <- resid(fm)`. Check that the residuals are normally distributed by creating a $Q$-$Q$ plot.
+
+```{r}
 resids <- resid(fm)
 qqnorm(resids)
 qqline(resids)
 ```
 
+# Exercise 4
+
+(a) Plot `Ozone` against `Solar.R` for each of three temperature ranges and each of three wind ranges. 
+
 ```{r}
-coplot(airquality$Ozone ~ airquality$Solar.R | airquality$Temp * airquality$Wind, number = c(3, 3), overlap = 0)
+coplot(airquality$Ozone ~ airquality$Solar.R | airquality$Temp * airquality$Wind,
+       number = c(3, 3), overlap = 0)
 ```
+
+(b) Construct a histogram of `Wind` and overlay the density curve.
 
 ```{r}
 hist(airquality$Wind, prob = TRUE)
 lines(density(airquality$Wind), col = "blue")
 ```
 
+# Exercise 5
+
+(a) Create a function called `locate.f` that given an integer and a vector returns `TRUE` if the value is in the vector.
+
 ```{r}
 locate.f <- function(int, vec) {
     return(int %in% vec)
 }
+```
 
+(b) Create a function called `unique.f` that given a vector returns a new vector with the same values but removing duplicated values.
+
+```{r}
 unique.f <- function(vec) {
     return(unique(vec))
 }
 ```
+
+# Exercise 6
+
+(a) Create a function that given a vector `v1` of characters and another vector of characters `v.na` converts all the values in `v1` contained in `v.na` to `NA`. Use this function to redo exercise **1.4(a)**
 
 ```{r}
 toNA <- function(v1, v.na) {
@@ -112,12 +218,20 @@ toNA <- function(v1, v.na) {
 
 rincome <- scan("data/rincome.txt" , character(), sep = "\n", skipNul = TRUE)
 rincome <- toNA(rincome, c("Don't know", "No answer", "Not applicable", "Refused"))
+```
 
+(b) Create a function called `big.values` that given a vector and a value `tresh` returns the vector with the values bigger than `tresh` changed into `NA`s.
+
+```{r}
 big.values <- function(vec, tresh) {
     vec[vec > tresh] <- NA
     return(vec)
 }
+```
 
+(c) Modify the previous function with an extra argument that gives the option of transforming the low values (lower than `tresh`) into `NA`s, instead. Make the default to change big values.
+
+```{r}
 big.values <- function(vec, tresh, greater = TRUE) {
     if(greater) {
         vec[vec > tresh] <- NA
@@ -127,9 +241,21 @@ big.values <- function(vec, tresh, greater = TRUE) {
         return(vec)
     }
 }
+```
 
+(d) Use the function to change in the `airquality` data frame all the values bigger than $320$ into `NA`.
+
+```{r}
 airquality$Solar.R <- big.values(airquality$Solar.R, 320)
 ```
+
+# Exercise 7
+
+(a) Create a function called `append.f` that adds a new variable to a data frame.
+
+(b) Modify the above function so that it checks whether the length of the vector is compatible with the dimensions of the data frame.
+
+(c) Add a new argument that gives the name of the new variable. By default make this name to be `"new.variable"`.
 
 ```{r}
 append.f <- function(variable, dataframe, name = "new.variable") {
@@ -144,9 +270,13 @@ append.f <- function(variable, dataframe, name = "new.variable") {
 }
 ```
 
+# Exercise 8
+
 ```{r}
 weighted_sum <- function(dataframe, x, y, a, b) {
-    names <- c(names(dataframe), paste(paste(paste(paste("sum", x, sep = ""), y, sep = ""), a, sep = "_"), b, sep = "_"))
+    names <- c(names(dataframe),
+               paste(paste(paste(paste("sum", x, sep = ""), y, sep = ""),
+                           a, sep = "_"), b, sep = "_"))
     print(names)
     dataframe$new_variable <- NA
     for(i in 1:nrow(dataframe)) {
@@ -157,6 +287,8 @@ weighted_sum <- function(dataframe, x, y, a, b) {
 }
 ```
 
+# Exercise 9
+
 ```{r}
 print_mean_sd <- function(vector) {
     cat(mean(vector), fill = TRUE, labels = "mean:")
@@ -165,6 +297,8 @@ print_mean_sd <- function(vector) {
     hist(vector)
 }
 ```
+
+# Exercise 10
 
 ```{r}
 sum(1:100)
@@ -176,8 +310,12 @@ for(i in 1:100)
 suma
 ```
 
+# Exercise 11
+
 ```{r}
-countries<-read.csv("countries of the world.csv", header=TRUE, sep=",",na.string = "")
-countries<-cbind(countries[,c(1,2)],lapply(lapply(countries[,c(3:20)], gsub, patt=",",replace="."), as.numeric))
+countries<-read.csv("data/countries of the world.csv", header=TRUE,
+    sep = ",", na.string = "")
+countries<-cbind(countries[,c(1,2)],
+    lapply(lapply(countries[,c(3:20)], gsub, patt=",",replace="."), as.numeric))
 summary(countries)
 ```
