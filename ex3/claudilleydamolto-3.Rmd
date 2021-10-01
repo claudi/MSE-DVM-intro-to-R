@@ -156,3 +156,12 @@ weighted_sum <- function(dataframe, x, y, a, b) {
     return(dataframe)
 }
 ```
+
+```{r}
+print_mean_sd <- function(vector) {
+    cat(mean(vector), fill = TRUE, labels = "mean:")
+    cat(sd(vector), fill = TRUE, labels = "sd:")
+
+    hist(vector)
+}
+```
