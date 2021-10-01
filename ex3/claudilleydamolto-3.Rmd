@@ -130,3 +130,16 @@ big.values <- function(vec, tresh, greater = TRUE) {
 
 airquality$Solar.R <- big.values(airquality$Solar.R, 320)
 ```
+
+```{r}
+append.f <- function(variable, dataframe, name = "new.variable") {
+    if(length(variable) == nrow(dataframe)) {
+        names <- c(names(dataframe), name)
+        dataframe <- cbind(dataframe, new.variable = variable)
+        names(dataframe) <- names
+        return(dataframe)
+    } else {
+        print("Invalid vector length")
+    }
+}
+```
