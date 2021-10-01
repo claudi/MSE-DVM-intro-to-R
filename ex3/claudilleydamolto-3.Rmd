@@ -143,3 +143,16 @@ append.f <- function(variable, dataframe, name = "new.variable") {
     }
 }
 ```
+
+```{r}
+weighted_sum <- function(dataframe, x, y, a, b) {
+    names <- c(names(dataframe), paste(paste(paste(paste("sum", x, sep = ""), y, sep = ""), a, sep = "_"), b, sep = "_"))
+    print(names)
+    dataframe$new_variable <- NA
+    for(i in 1:nrow(dataframe)) {
+        dataframe$new_variable[i] <- a*sum(dataframe[1:i, x]) + b*sum(dataframe[1:i, y])
+    }
+    names(dataframe) <- names
+    return(dataframe)
+}
+```
