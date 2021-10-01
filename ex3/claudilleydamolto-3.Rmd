@@ -175,3 +175,9 @@ for(i in 1:100)
 
 suma
 ```
+
+```{r}
+countries<-read.csv("countries of the world.csv", header=TRUE, sep=",",na.string = "")
+countries<-cbind(countries[,c(1,2)],lapply(lapply(countries[,c(3:20)], gsub, patt=",",replace="."), as.numeric))
+summary(countries)
+```
